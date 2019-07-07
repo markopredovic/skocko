@@ -1,0 +1,15 @@
+.lSkocko {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-top: 100px;
+}
+.lTop {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+.lCurrentTable {
+
+}
+.lResultTable {}
+.lGameControls {}
