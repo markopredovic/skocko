@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/:markopredovic.github.io/skocko/static/css/main.1efc0539.chunk.css",
-    "main.js": "/:markopredovic.github.io/skocko/static/js/main.80e4aa86.chunk.js",
-    "main.js.map": "/:markopredovic.github.io/skocko/static/js/main.80e4aa86.chunk.js.map",
-    "runtime~main.js": "/:markopredovic.github.io/skocko/static/js/runtime~main.20687d26.js",
-    "runtime~main.js.map": "/:markopredovic.github.io/skocko/static/js/runtime~main.20687d26.js.map",
-    "static/js/2.b8beaffc.chunk.js": "/:markopredovic.github.io/skocko/static/js/2.b8beaffc.chunk.js",
-    "static/js/2.b8beaffc.chunk.js.map": "/:markopredovic.github.io/skocko/static/js/2.b8beaffc.chunk.js.map",
-    "index.html": "/:markopredovic.github.io/skocko/index.html",
-    "precache-manifest.4effd699f037c92bdcb21e41adb6ccb8.js": "/:markopredovic.github.io/skocko/precache-manifest.4effd699f037c92bdcb21e41adb6ccb8.js",
-    "service-worker.js": "/:markopredovic.github.io/skocko/service-worker.js",
-    "static/css/main.1efc0539.chunk.css.map": "/:markopredovic.github.io/skocko/static/css/main.1efc0539.chunk.css.map"
+    "main.css": "/skocko/static/css/main.1efc0539.chunk.css",
+    "main.js": "/skocko/static/js/main.a61096e6.chunk.js",
+    "main.js.map": "/skocko/static/js/main.a61096e6.chunk.js.map",
+    "runtime~main.js": "/skocko/static/js/runtime~main.e44c7566.js",
+    "runtime~main.js.map": "/skocko/static/js/runtime~main.e44c7566.js.map",
+    "static/js/2.daab111a.chunk.js": "/skocko/static/js/2.daab111a.chunk.js",
+    "static/js/2.daab111a.chunk.js.map": "/skocko/static/js/2.daab111a.chunk.js.map",
+    "index.html": "/skocko/index.html",
+    "precache-manifest.965b0292e2de19f25da0e1b3dfc99c1c.js": "/skocko/precache-manifest.965b0292e2de19f25da0e1b3dfc99c1c.js",
+    "service-worker.js": "/skocko/service-worker.js",
+    "static/css/main.1efc0539.chunk.css.map": "/skocko/static/css/main.1efc0539.chunk.css.map"
   }
 }
