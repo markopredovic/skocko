@@ -111,37 +111,82 @@ class Skocko extends Component {
 
     calculateScore = (combination) => {
 
+        const getCount = (i, combination, random_combination) => {
+            const _random_count =  random_combination.reduce((a, b) => {
+                if(b === i) {
+                    return a + 1;
+                } else return a
+            }, 0)
+
+            const _current_count =  combination.reduce((a, b) => {
+                if(b === i) {
+                    return a + 1;
+                } else return a
+            }, 0)
+
+
+            return Math.min(_random_count, _current_count);
+
+        }
+
+        const getRightCount = (i, combination, random_combination) => {
+            return random_combination.reduce((a, b, index) => {
+                if(combination[index] === b && b === i) {
+                    return a + 1;
+                } else return a;
+            }, 0)
+        }
+
+        const calculateSign = (i, combination, random_combination) => {
+            const _total_count = getCount(i, combination, random_combination);
+            const _on_right_place = getRightCount(i, combination, random_combination);
+
+
+            return {
+                right_place: _on_right_place,
+                not_right_place: _total_count - _on_right_place
+            }
+        }
+
+        const updateResult = (result, step_result) => {
+            return {
+                right_place: result.right_place + step_result.right_place,
+                not_right_place: result.not_right_place + step_result.not_right_place,
+            }
+        }
+
         let random_combination = [...this.state.randomCombination];
-        let right_place = 0;
-        let not_right_place = 0;
+
+        let result = {
+            right_place: 0,
+            not_right_place: 0
+        }
 
         let score = [];
         
 
-        for(let i = 0; i <  4; i++) {
-            if(combination[i] === random_combination[i]) {
-                right_place++;
+        for(let i = 1; i <= 6; i++) {
+            if(combination.indexOf(i) !== -1) {
+                let step_result = calculateSign(i, combination, random_combination);
+                console.log(step_result);
+                
+                result.right_place = result.right_place + step_result.right_place;
+                result.not_right_place = result.not_right_place + step_result.not_right_place;
             }
         }
 
-        combination.forEach(el => {
-            const _index = random_combination.indexOf(el);
+        console.log("Result: ", result);
 
-            if( _index !== -1 && (combination[_index] !== random_combination[_index])) {
-                not_right_place++;
-                random_combination[_index] = 999;
-            }
-        });
 
-        for(let i = 0; i < right_place; i++) {
+        for(let i = 0; i < result.right_place; i++) {
             score.push('DA');
         }
 
-        for(let i = 0; i < not_right_place; i++) {
+        for(let i = 0; i < result.not_right_place; i++) {
             score.push('NE');
         }
 
-        for(let i = 0; i < 4 - (not_right_place + right_place); i++) {
+        for(let i = 0; i < 4 - (result.not_right_place + result.right_place); i++) {
             score.push('EMPTY');
         }
 
@@ -181,20 +226,28 @@ class Skocko extends Component {
 
         return (
             <div className={Classes.lSkocko}>
-                <div>
-                    {this.state.is_game_end && (<GameEnd newGame={this.newGame} is_success={this.state.is_success} random={this.state.randomCombination}/>)}
-                    </div>
+                <div className="l-instructions" style={{marginBottom: '50px', textAlign: 'left'}}>
+                <h1>Skocko</h1>
+                <h5>Izaberi kombinaciju i klikni na 'Potvrdi' dugme. Obrisi kombinaciju na 'Obrisi' dugme pa unosi ponovo.</h5>
+                </div>
                 <div className={Classes.lTop}>
-                    <div className={Classes.lCurrentTable}>
+                    <div className={`${Classes.lCurrentTable} ${Classes.GameTable}`}>
                         <GameCurrent game={this.state.game} />
                 </div>
-                    <div className={Classes.lResultTable}>
-                        <GameResult result={this.state.result_game}/>
+                    <div className={`${Classes.lResultTable}  ${Classes.GameTable}`}>
+                        <GameResult result={this.state.result_game} />
                 </div>
                 </div>
-                <div className={Classes.lGameControls}>
-                    <PlaySkocko submitRound={this.submitRoundHandler} isGameEnd={this.state.is_game_end}/>
+                <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                    <div className={Classes.lGameControls}>
+                        <PlaySkocko submitRound={this.submitRoundHandler} isGameEnd={this.state.is_game_end}/>
+                    </div>
+                    <div className="l-end-game">
+                        {this.state.is_game_end && (<GameEnd newGame={this.newGame} is_success={this.state.is_success} random={this.state.randomCombination}/>)}
+                    </div>
                 </div>
+
+
 
             </div>
         )
