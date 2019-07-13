@@ -4,9 +4,9 @@ import GameIcon from '../Skocko/GameIcon';
 
 const gameCurrent = ({game}) => {
 
-    const currentTable = game.map(runda => {
+    const currentTable = game.map((runda, index) => {
         return (
-            <div key={Math.round(Math.random() * 1000)}>
+            <div key={index}>
                 <span><GameIcon icon={parseSign(runda[0])} /></span>
                 <span><GameIcon icon={parseSign(runda[1])} /></span>
                 <span><GameIcon icon={parseSign(runda[2])} /></span>

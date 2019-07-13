@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { isNull } from 'util';
 import GameIcon from '../../components/Skocko/GameIcon';
-import { POINT_CONVERSION_COMPRESSED } from 'constants';
 
 class PlaySkocko extends Component {
 
@@ -75,26 +74,26 @@ class PlaySkocko extends Component {
             display: 'inline-flex',
             alignItems: 'center',
             justifyContent: 'center',
-            width: '50px',
-            height: '50px',
-            marginRight: '10px',
+            width: '40px',
+            height: '40px',
+            marginRight: '7px',
             backgroundColor: 'unset',
-            border: '2px solid',
+            border: '1px solid',
             borderRadius: '4px'
         }
 
         return (
-            <div>
-                <div style={{minHeight: '50px', display: 'inline-flex', alignItems: 'center'}}>
-                    <span style={{marginRight: '20px'}}>Tvoja trenutna kombinacija:</span> 
-                    <span style={{marginRight: '10px'}}><GameIcon icon={this.state.currentCombination[0]} /></span>
-                    <span style={{marginRight: '10px'}}><GameIcon icon={this.state.currentCombination[1]} /></span>
-                    <span style={{marginRight: '10px'}}><GameIcon icon={this.state.currentCombination[2]} /></span>
-                    <span style={{marginRight: '10px'}}><GameIcon icon={this.state.currentCombination[3]} /></span>
+            <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%'}}>
+                <div style={{minHeight: '40px', display: 'inline-flex', alignItems: 'center'}}>
+                    <span style={{marginRight: '7px'}}><GameIcon icon={this.state.currentCombination[0]} /></span>
+                    <span style={{marginRight: '7px'}}><GameIcon icon={this.state.currentCombination[1]} /></span>
+                    <span style={{marginRight: '7px'}}><GameIcon icon={this.state.currentCombination[2]} /></span>
+                    <span style={{marginRight: '7px'}}><GameIcon icon={this.state.currentCombination[3]} /></span>
                 </div>
+                <div>
                 <div style={{marginBottom: '20px'}}>
                     <span style={{display: 'inline-block', marginBottom: '10px'}}>Izaberi kombinaciju:</span>    
-                    <div>
+                    <div style={{display: 'flex'}}>
                         <button style={btnActionDefault} onClick={() => this.addSignHandler(1)} disabled={this.state.disabled || this.props.isGameEnd}><GameIcon icon={1} /></button>
                         <button style={btnActionDefault} onClick={() => this.addSignHandler(2)} disabled={this.state.disabled || this.props.isGameEnd}><GameIcon icon={2} /></button>
                         <button style={btnActionDefault} onClick={() => this.addSignHandler(3)} disabled={this.state.disabled || this.props.isGameEnd}><GameIcon icon={3} /></button>
@@ -107,7 +106,7 @@ class PlaySkocko extends Component {
                     <button style={btnPrimaryStyle} onClick={this.submitCombination} disabled={!this.state.disabled  || this.props.isGameEnd}>Potvrdi</button>
                     <button style={btnSecondaryStyle} onClick={this.clearCombination} disabled={ this.props.isGameEnd}>Obrisi</button>
                 </div>
-
+                </div>
             </div>
         )
     }

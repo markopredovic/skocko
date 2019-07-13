@@ -1,257 +1,265 @@
-import React, { Component } from 'react'
-import Classes from './Skocko.module.css'
-import GameCurrent from './GameCurrent'
-import PlaySkocko from './PlaySkocko'
-import GameResult from './GameResult'
-import GameEnd from './GameEnd'
-import { isNull } from 'util';
+import React, { Component } from "react";
+import Classes from "./Skocko.module.css";
+import GameCurrent from "./GameCurrent";
+import PlaySkocko from "./PlaySkocko";
+import GameResult from "./GameResult";
+import GameEnd from "./GameEnd";
+import { isNull } from "util";
 
 class Skocko extends Component {
+  state = {
+    game: [
+      [null, null, null, null],
+      [null, null, null, null],
+      [null, null, null, null],
+      [null, null, null, null],
+      [null, null, null, null],
+      [null, null, null, null]
+    ],
+    result_game: [
+      [null, null, null, null],
+      [null, null, null, null],
+      [null, null, null, null],
+      [null, null, null, null],
+      [null, null, null, null],
+      [null, null, null, null]
+    ],
+    randomCombination: [null, null, null, null],
+    is_game_end: false,
+    is_success: false
+  };
 
-    state = {
-        game: [
-           [null, null, null, null],
-           [null, null, null, null],
-           [null, null, null, null],
-           [null, null, null, null],
-           [null, null, null, null],
-           [null, null, null, null]
-        ],
-        result_game: [
-            [null, null, null, null],
-            [null, null, null, null],
-            [null, null, null, null],
-            [null, null, null, null],
-            [null, null, null, null],
-            [null, null, null, null]
-         ],
-        randomCombination: [null, null, null, null],
-        is_game_end: false,
-        is_success: false
+  componentDidMount() {
+    console.log("Component did mount");
+    this.generateRandomCombination();
+  }
+
+  generateRandomCombination = () => {
+    const customRandom = [0, 1, 2, 3].map(() =>
+      Math.round(Math.random() * 5 + 1)
+    );
+
+    this.setState({ randomCombination: customRandom });
+  };
+
+  submitRoundHandler = combination => {
+    console.log(combination);
+
+    this.updateGameTable(combination);
+    this.updateResultTable(combination);
+  };
+
+  updateGameTable = combination => {
+    console.log("update game table");
+
+    let empty_round_finded = false;
+    let is_game_end = false;
+
+    const updatedGame = this.state.game.map(round => {
+      if (this.isEmptyRound(round) && !empty_round_finded) {
+        empty_round_finded = true;
+        return combination;
+      } else {
+        return round;
+      }
+    });
+
+    // if 6 atempt then game is ended
+    if (!isNull(updatedGame[5][0])) {
+      is_game_end = true;
     }
 
 
-    componentDidMount () {
-        console.log('Component did mount');
-        this.generateRandomCombination();
-    }
+    this.setState({ game: updatedGame, is_game_end: is_game_end });
+  };
 
-    generateRandomCombination = () => {
-        const customRandom = [0, 1, 2, 3].map(() => Math.round(Math.random() * 5 + 1));
+  updateResultTable = combination => {
+    console.log("Update result table");
 
-        this.setState({randomCombination: customRandom})
-    }
+    const score = this.calculateScore(combination);
 
-    submitRoundHandler = (combination) => {
-        console.log(combination);
+    const is_success = this.isGameSuccess(score);
 
-        this.updateGameTable(combination);
-        this.updateResultTable(combination);
-    }
+    let empty_round_finded = false;
 
-    updateGameTable = (combination) => {
-        console.log('update game table');
-
-        let empty_round_finded = false;
-        let is_game_end = false;
-
-        const updatedGame = this.state.game.map(round => {
-            if(this.isEmptyRound(round) && !empty_round_finded) {
-                empty_round_finded = true;
-                return combination;
-            } else {
-                return round
-            }
-        })
-
-        // if 6 atempt then game is ended
-        if(!isNull(updatedGame[5][0])) {
-            is_game_end = true;
-        }
-
-        console.log('is_game_end', is_game_end);
-
-        this.setState({game: updatedGame, is_game_end: is_game_end});
-    }
-
-    updateResultTable = (combination) => {
-        console.log('Update result table')
-
-        const score = this.calculateScore(combination);
-
-        const is_success = this.isGameSuccess(score);
-
-        let empty_round_finded = false;
-
-        const updatedResult = this.state.result_game.map(round => {
-            if(this.isEmptyRound(round) && !empty_round_finded) {
-                empty_round_finded = true;
-                return score;
-            } else {
-                return round
-            }
-        })
-
-        let is_game_end = !isNull(updatedResult[5][0]) || is_success;
-
-        this.setState({
-            result_game: updatedResult,
-            is_success,
-            is_game_end
-        });
-    }
-
-    isGameSuccess = (score) => {
-        return score[0] === 'DA' && score[1] === 'DA' && score[2] === 'DA' && score[3] === 'DA';
-    }
-
-    isEmptyRound = (round) => {
-        return isNull(round[0]);
-    }
-
-    calculateScore = (combination) => {
-
-        const getCount = (i, combination, random_combination) => {
-            const _random_count =  random_combination.reduce((a, b) => {
-                if(b === i) {
-                    return a + 1;
-                } else return a
-            }, 0)
-
-            const _current_count =  combination.reduce((a, b) => {
-                if(b === i) {
-                    return a + 1;
-                } else return a
-            }, 0)
-
-
-            return Math.min(_random_count, _current_count);
-
-        }
-
-        const getRightCount = (i, combination, random_combination) => {
-            return random_combination.reduce((a, b, index) => {
-                if(combination[index] === b && b === i) {
-                    return a + 1;
-                } else return a;
-            }, 0)
-        }
-
-        const calculateSign = (i, combination, random_combination) => {
-            const _total_count = getCount(i, combination, random_combination);
-            const _on_right_place = getRightCount(i, combination, random_combination);
-
-
-            return {
-                right_place: _on_right_place,
-                not_right_place: _total_count - _on_right_place
-            }
-        }
-
-        const updateResult = (result, step_result) => {
-            return {
-                right_place: result.right_place + step_result.right_place,
-                not_right_place: result.not_right_place + step_result.not_right_place,
-            }
-        }
-
-        let random_combination = [...this.state.randomCombination];
-
-        let result = {
-            right_place: 0,
-            not_right_place: 0
-        }
-
-        let score = [];
-        
-
-        for(let i = 1; i <= 6; i++) {
-            if(combination.indexOf(i) !== -1) {
-                let step_result = calculateSign(i, combination, random_combination);
-                console.log(step_result);
-                
-                result.right_place = result.right_place + step_result.right_place;
-                result.not_right_place = result.not_right_place + step_result.not_right_place;
-            }
-        }
-
-        console.log("Result: ", result);
-
-
-        for(let i = 0; i < result.right_place; i++) {
-            score.push('DA');
-        }
-
-        for(let i = 0; i < result.not_right_place; i++) {
-            score.push('NE');
-        }
-
-        for(let i = 0; i < 4 - (result.not_right_place + result.right_place); i++) {
-            score.push('EMPTY');
-        }
-
+    const updatedResult = this.state.result_game.map(round => {
+      if (this.isEmptyRound(round) && !empty_round_finded) {
+        empty_round_finded = true;
         return score;
- 
+      } else {
+        return round;
+      }
+    });
+
+    let is_game_end = !isNull(updatedResult[5][0]) || is_success;
+
+    this.setState({
+      result_game: updatedResult,
+      is_success,
+      is_game_end
+    });
+  };
+
+  isGameSuccess = score => {
+    return (
+      score[0] === "DA" &&
+      score[1] === "DA" &&
+      score[2] === "DA" &&
+      score[3] === "DA"
+    );
+  };
+
+  isEmptyRound = round => {
+    return isNull(round[0]);
+  };
+
+  calculateScore = combination => {
+    const getCount = (i, combination, random_combination) => {
+      const _random_count = random_combination.reduce((a, b) => {
+        if (b === i) {
+          return a + 1;
+        } else return a;
+      }, 0);
+
+      const _current_count = combination.reduce((a, b) => {
+        if (b === i) {
+          return a + 1;
+        } else return a;
+      }, 0);
+
+      return Math.min(_random_count, _current_count);
+    };
+
+    const getRightCount = (i, combination, random_combination) => {
+      return random_combination.reduce((a, b, index) => {
+        if (combination[index] === b && b === i) {
+          return a + 1;
+        } else return a;
+      }, 0);
+    };
+
+    const calculateSign = (i, combination, random_combination) => {
+      const _total_count = getCount(i, combination, random_combination);
+      const _on_right_place = getRightCount(i, combination, random_combination);
+
+      return {
+        right_place: _on_right_place,
+        not_right_place: _total_count - _on_right_place
+      };
+    };
+
+    const updateResult = (result, step_result) => {
+      return {
+        right_place: result.right_place + step_result.right_place,
+        not_right_place: result.not_right_place + step_result.not_right_place
+      };
+    };
+
+    let random_combination = [...this.state.randomCombination];
+
+    let result = {
+      right_place: 0,
+      not_right_place: 0
+    };
+
+    let score = [];
+
+    for (let i = 1; i <= 6; i++) {
+      if (combination.indexOf(i) !== -1) {
+        let step_result = calculateSign(i, combination, random_combination);
+        console.log(step_result);
+
+        result.right_place = result.right_place + step_result.right_place;
+        result.not_right_place =
+          result.not_right_place + step_result.not_right_place;
+      }
     }
 
-    newGame = () => {
-        this.setState({
-            game: [
-                [null, null, null, null],
-                [null, null, null, null],
-                [null, null, null, null],
-                [null, null, null, null],
-                [null, null, null, null],
-                [null, null, null, null]
-             ],
-             result_game: [
-                 [null, null, null, null],
-                 [null, null, null, null],
-                 [null, null, null, null],
-                 [null, null, null, null],
-                 [null, null, null, null],
-                 [null, null, null, null]
-              ],
-             randomCombination: [null, null, null, null],
-             is_game_end: false,
-             is_success: false
-        })
+    console.log("Result: ", result);
 
-        this.generateRandomCombination();
+    for (let i = 0; i < result.right_place; i++) {
+      score.push("DA");
     }
 
-
-
-    render() {
-
-        return (
-            <div className={Classes.lSkocko}>
-                <div className="l-instructions" style={{marginBottom: '50px', textAlign: 'left'}}>
-                <h1>Skocko</h1>
-                <h5>Izaberi kombinaciju i klikni na 'Potvrdi' dugme. Obrisi kombinaciju na 'Obrisi' dugme pa unosi ponovo.</h5>
-                </div>
-                <div className={Classes.lTop}>
-                    <div className={`${Classes.lCurrentTable} ${Classes.GameTable}`}>
-                        <GameCurrent game={this.state.game} />
-                </div>
-                    <div className={`${Classes.lResultTable}  ${Classes.GameTable}`}>
-                        <GameResult result={this.state.result_game} />
-                </div>
-                </div>
-                <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                    <div className={Classes.lGameControls}>
-                        <PlaySkocko submitRound={this.submitRoundHandler} isGameEnd={this.state.is_game_end}/>
-                    </div>
-                    <div className="l-end-game">
-                        {this.state.is_game_end && (<GameEnd newGame={this.newGame} is_success={this.state.is_success} random={this.state.randomCombination}/>)}
-                    </div>
-                </div>
-
-
-
-            </div>
-        )
+    for (let i = 0; i < result.not_right_place; i++) {
+      score.push("NE");
     }
+
+    for (
+      let i = 0;
+      i < 4 - (result.not_right_place + result.right_place);
+      i++
+    ) {
+      score.push("EMPTY");
+    }
+
+    return score;
+  };
+
+  newGame = () => {
+    this.setState({
+      game: [
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null]
+      ],
+      result_game: [
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null]
+      ],
+      randomCombination: [null, null, null, null],
+      is_game_end: false,
+      is_success: false
+    });
+
+    this.generateRandomCombination();
+  };
+
+  render() {
+    return (
+      <div className={Classes.lSkocko}>
+        <div
+          className="l-instructions"
+          style={{ marginBottom: "30px", textAlign: "left" }}
+        >
+          <h1>Skocko</h1>
+        </div>
+        <div className={Classes.lTop}>
+          <div className={`${Classes.lCurrentTable} ${Classes.GameTable}`}>
+            <GameCurrent game={this.state.game} />
+          </div>
+          <div className={Classes.lGameControls}>
+            <PlaySkocko
+              submitRound={this.submitRoundHandler}
+              isGameEnd={this.state.is_game_end}
+            />
+          </div>
+          <div className={`${Classes.lResultTable}  ${Classes.GameTable}`}>
+            <GameResult result={this.state.result_game} />
+          </div>
+        </div>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+
+          <div className="l-end-game">
+            {this.state.is_game_end && (
+              <GameEnd
+                newGame={this.newGame}
+                is_success={this.state.is_success}
+                random={this.state.randomCombination}
+              />
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default Skocko
+export default Skocko;

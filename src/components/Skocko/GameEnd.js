@@ -18,7 +18,7 @@ const gameEnd = props => {
   let report = "Cestitamo";
 
   if(!props.is_success) {
-    report = props.random.map(sign => <span style={{marginRight: '10px'}}><GameIcon icon={sign} /></span>);
+    report = props.random.map((sign, index) => <span key={index} style={{display: 'inline-block', marginRight: '7px'}}><GameIcon icon={sign} /></span>);
   }
 
   return (

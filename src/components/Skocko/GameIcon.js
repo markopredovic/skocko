@@ -5,6 +5,7 @@ import srceIcon from '../../assets/images/skocko-srce.png';
 import karoIcon from '../../assets/images/skocko-karo.png';
 import pikIcon from '../../assets/images/skocko-pik.png';
 import trefIcon from '../../assets/images/skocko-tref.png';
+import { blockStatement } from '@babel/types';
 
 const GameIcon = ({icon}) => {
     let gameIcon = null;
@@ -17,39 +18,45 @@ const GameIcon = ({icon}) => {
 
     const hit = {
         display: 'inline-block',
-        width: '40px',
-        height: '40px',
+        width: '30px',
+        height: '30px',
         backgroundColor: 'red',
-        borderRadius: '50px'
+        borderRadius: '30px'
     }
 
     const missed = {
         display: 'inline-block',
-        width: '40px',
-        height: '40px',
+        width: '30px',
+        height: '30px',
         backgroundColor: 'yellow',
-        borderRadius: '50px'
+        borderRadius: '30px'
     }
 
     const empty = {
         display: 'inline-block',
-        width: '40px',
-        height: '40px',
+        width: '30px',
+        height: '30px',
         backgroundColor: 'unset'
+    }
+
+    const imgStyle = {
+        display: 'block',
+        height: '30px',
+        width: 'auto'
     }
     
     if (icon === 0) { 
         gameIcon = null; 
     } else if (icon === 1) {
-        gameIcon =  <img src={srceIcon} alt=""/>;
+        gameIcon =  <img src={srceIcon} style={imgStyle}/>;
     } else if (icon === 2) {
-        gameIcon =  <img src={karoIcon} alt=""/>;
+        gameIcon =  <img src={karoIcon} style={imgStyle} />;
     } else if (icon === 3) {
-        gameIcon =  <img src={pikIcon} alt=""/>;
+        gameIcon =  <img src={pikIcon} style={imgStyle}/>;
     } else if (icon === 4) {
-        gameIcon =  <img src={trefIcon} alt=""/>;
+        gameIcon =  <img src={trefIcon} style={imgStyle}/>;
     } else if (icon === 5) {
-        gameIcon =  <img src={skockoIcon} alt=""/>;
+        gameIcon =  <img src={skockoIcon} style={imgStyle} />;
     } else if (icon === 'DA') {
         gameIcon =  <span style={ hit }></span>;
     } else if (icon === 'NE') {
@@ -57,7 +64,7 @@ const GameIcon = ({icon}) => {
     } else if (icon === 'EMPTY') {
         gameIcon =  <span style={ empty }></span>;
     } else if (icon === 6) {
-        gameIcon =  <img src={starIcon} alt=""/>;
+        gameIcon =  <img src={starIcon} style={imgStyle} />;
     } else {
         gameIcon =  null;
     }
