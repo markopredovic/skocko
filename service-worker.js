@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/skocko/precache-manifest.4d1620864d73d27654464d812bc2b316.js"
+  "/skocko/precache-manifest.3c79cdced8075b18b32c4a712941e037.js"
 );
 
 self.addEventListener('message', (event) => {
