@@ -4,20 +4,20 @@ import GameIcon from '../Skocko/GameIcon';
 
 const gameCurrent = ({game}) => {
 
-    const currentTable = game.map((runda, index) => {
+    const gameTable = game.map((row, index) => {
         return (
             <div key={index}>
-                <span><GameIcon icon={parseSign(runda[0])} /></span>
-                <span><GameIcon icon={parseSign(runda[1])} /></span>
-                <span><GameIcon icon={parseSign(runda[2])} /></span>
-                <span><GameIcon icon={parseSign(runda[3])} /></span>
+                <GameIcon icon={parseSign(row[0])} />
+                <GameIcon icon={parseSign(row[1])} />
+                <GameIcon icon={parseSign(row[2])} />
+                <GameIcon icon={parseSign(row[3])} />
             </div>
         )
     })
 
     return (
-        <div>
-            {currentTable}
+        <div className="skocko-table game">
+            {gameTable}
         </div>
     )
 }

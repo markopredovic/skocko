@@ -1,0 +1,75 @@
+.skocko-table {
+    padding: 20px;
+    background-color: #0030d7;
+
+    > div {
+        display: flex;
+    }
+}
+
+.table-field {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 15px 10px 0;
+    width: 55px;
+    height: 55px;
+    background-color: #0070ff;
+    border: 3px solid #67bdf7;
+    border-radius: 6px;
+
+    &:nth-child(4n) { margin-right: 0; }
+
+    &.success {
+       span {
+            display: inline-block;   
+            width: 40px;
+           height: 40px;
+            background-color: #ff1728;
+            border-radius: 30px;
+       }
+    }
+    &.false {
+        span {
+             display: inline-block;   
+             width: 40px;
+            height: 40px;
+             background-color: #f5c553;
+             border-radius: 30px;
+        }
+     }
+}
+
+button {
+    padding: 0;
+    border: unset;
+    background-color: unset;
+
+    span.table-field {
+        margin: 0 5px 0 0;
+    }
+
+    &:last-child span.table-field { margin-right: 0; }
+    &:focus { outline: unset; }
+}
+
+.btn {
+    padding: 0 30px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+    border-radius: 4px;
+
+    &.btn-success {
+        background-color: #4056a1;
+    }
+    &.btn-danger {
+        background-color: #f13c20;
+    }
+    &.btn-info {
+        background-color: #ac3b61;
+    }
+}
+

@@ -1,70 +1,34 @@
 import React from 'react';
-import skockoIcon from '../../assets/images/skocko-skocko.png';
-import starIcon from '../../assets/images/skocko-zvezda.png';
-import srceIcon from '../../assets/images/skocko-srce.png';
-import karoIcon from '../../assets/images/skocko-karo.png';
-import pikIcon from '../../assets/images/skocko-pik.png';
-import trefIcon from '../../assets/images/skocko-tref.png';
-import { blockStatement } from '@babel/types';
+import skockoIcon from '../../assets/images/icon-skocko.png';
+import starIcon from '../../assets/images/icon-zvezda.png';
+import srceIcon from '../../assets/images/icon-srce.png';
+import karoIcon from '../../assets/images/icon-karo.png';
+import pikIcon from '../../assets/images/icon-pik.png';
+import trefIcon from '../../assets/images/icon-tref.png';
 
 const GameIcon = ({icon}) => {
     let gameIcon = null;
-
-    const emptyField = {
-        display: 'inline-block',
-        width: '30px',
-        height: '30px'
-    }
-
-    const hit = {
-        display: 'inline-block',
-        width: '30px',
-        height: '30px',
-        backgroundColor: 'red',
-        borderRadius: '30px'
-    }
-
-    const missed = {
-        display: 'inline-block',
-        width: '30px',
-        height: '30px',
-        backgroundColor: 'yellow',
-        borderRadius: '30px'
-    }
-
-    const empty = {
-        display: 'inline-block',
-        width: '30px',
-        height: '30px',
-        backgroundColor: 'unset'
-    }
-
-    const imgStyle = {
-        display: 'block',
-        height: '30px',
-        width: 'auto'
-    }
     
     if (icon === 0) { 
-        gameIcon = null; 
+        gameIcon = <span className="empty-field table-field"></span>; 
     } else if (icon === 1) {
-        gameIcon =  <img src={srceIcon} style={imgStyle}/>;
+        gameIcon =  <span className="table-field"><img src={srceIcon} alt=""/></span>;
     } else if (icon === 2) {
-        gameIcon =  <img src={karoIcon} style={imgStyle} />;
+        gameIcon =  <span className="table-field"><img src={karoIcon} alt=""/></span>;
     } else if (icon === 3) {
-        gameIcon =  <img src={pikIcon} style={imgStyle}/>;
+        gameIcon =  <span className="table-field"><img src={pikIcon} alt=""/></span>;
     } else if (icon === 4) {
-        gameIcon =  <img src={trefIcon} style={imgStyle}/>;
+        gameIcon =  <span className="table-field"><img src={trefIcon} alt=""/></span>;
     } else if (icon === 5) {
-        gameIcon =  <img src={skockoIcon} style={imgStyle} />;
+        gameIcon =  <span className="table-field"><img src={skockoIcon} alt=""/></span>;
     } else if (icon === 'DA') {
-        gameIcon =  <span style={ hit }></span>;
+        gameIcon =  <span className="table-field success"><span></span></span>;
     } else if (icon === 'NE') {
-        gameIcon =  <span style={ missed }></span>;
+        gameIcon =  <span className="table-field false"><span></span></span>;
     } else if (icon === 'EMPTY') {
-        gameIcon =  <span style={ empty }></span>;
+        gameIcon =  <span className="table-field empty"></span>;
     } else if (icon === 6) {
-        gameIcon =  <img src={starIcon} style={imgStyle} />;
+        gameIcon =  <span className="table-field"><img src={starIcon} alt=""/></span>;
     } else {
         gameIcon =  null;
     }

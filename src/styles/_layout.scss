@@ -1,0 +1,64 @@
+body {
+    background-color: #6bcbfb;
+}
+.l-skocko {
+    padding: 10px 30px;
+
+    background-color: #6bcbfb;
+
+    .l-title {
+        margin-bottom: 30px;
+
+        h1 { margin: 0; font-size: 3rem; }
+    }
+
+    .l-skocko-top {
+        margin-bottom: 40px;
+        display: flex;
+    }
+
+    .l-table-game { margin-right: 50px; }
+
+    .l-skocko-bottom {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .l-skocko-controls {
+        margin-right: 50px;
+
+        .l-current-combination {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+
+            span {
+                &.table-field {
+                    margin: 0 5px 0 0;
+                }
+            }
+        }
+        .l-controls-buttons { margin-bottom: 20px; }
+        .l-actions {
+            .btn { margin-right: 30px; }
+        }
+    }
+
+    .l-table {}
+    .l-table-game {}
+    .l-end-game {
+        display: flex;
+
+        p { margin-top: 0;}
+    }
+    .l-random-combination {
+        margin-bottom: 20px;
+        
+        span {
+            &.table-field {
+                margin: 0 5px 0 0;
+            }
+        }
+    }
+    .l-table-result {}
+}

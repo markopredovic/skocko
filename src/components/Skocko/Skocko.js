@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Classes from "./Skocko.module.css";
+import "../../styles/styles.scss";
 import GameCurrent from "./GameCurrent";
 import PlaySkocko from "./PlaySkocko";
 import GameResult from "./GameResult";
@@ -25,6 +25,7 @@ class Skocko extends Component {
       [null, null, null, null]
     ],
     randomCombination: [null, null, null, null],
+    currentCombination: [null, null, null, null],
     is_game_end: false,
     is_success: false
   };
@@ -68,7 +69,6 @@ class Skocko extends Component {
     if (!isNull(updatedGame[5][0])) {
       is_game_end = true;
     }
-
 
     this.setState({ game: updatedGame, is_game_end: is_game_end });
   };
@@ -224,29 +224,23 @@ class Skocko extends Component {
 
   render() {
     return (
-      <div className={Classes.lSkocko}>
-        <div
-          className="l-instructions"
-          style={{ marginBottom: "30px", textAlign: "left" }}
-        >
-          <h1>Skocko</h1>
-        </div>
-        <div className={Classes.lTop}>
-          <div className={`${Classes.lCurrentTable} ${Classes.GameTable}`}>
+      <div className="l-skocko">
+        <div className="l-skocko-top">
+          <div className="l-table-game l-table">
             <GameCurrent game={this.state.game} />
           </div>
-          <div className={Classes.lGameControls}>
+
+          <div className="l-table-result l-table">
+            <GameResult result={this.state.result_game} />
+          </div>
+        </div>
+        <div className="l-skocko-bottom">
+          <div className="l-skocko-controls">
             <PlaySkocko
               submitRound={this.submitRoundHandler}
               isGameEnd={this.state.is_game_end}
             />
           </div>
-          <div className={`${Classes.lResultTable}  ${Classes.GameTable}`}>
-            <GameResult result={this.state.result_game} />
-          </div>
-        </div>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-
           <div className="l-end-game">
             {this.state.is_game_end && (
               <GameEnd

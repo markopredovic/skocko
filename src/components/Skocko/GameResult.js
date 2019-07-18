@@ -5,19 +5,19 @@ import GameIcon from '../Skocko/GameIcon'
 
 const gameResult = ({result}) => {
 
-    const resultTable = result.map(runda => {
+    const resultTable = result.map((row, index) => {
         return (
-            <div key={Math.round(Math.random() * 100000)}>
-                <span><GameIcon icon={parseSign(runda[0])} /></span>
-                <span><GameIcon icon={parseSign(runda[1])} /></span>
-                <span><GameIcon icon={parseSign(runda[2])} /></span>
-                <span><GameIcon icon={parseSign(runda[3])} /></span>
+            <div key={index}>
+                <GameIcon icon={parseSign(row[0])} />
+                <GameIcon icon={parseSign(row[1])} />
+                <GameIcon icon={parseSign(row[2])} />
+                <GameIcon icon={parseSign(row[3])} />
             </div>
         )
     })
 
     return (
-        <div>
+        <div className="skocko-table result">
             {resultTable}
         </div>
     )
