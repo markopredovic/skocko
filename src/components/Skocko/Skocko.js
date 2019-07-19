@@ -235,12 +235,12 @@ class Skocko extends Component {
           </div>
         </div>
         <div className="l-skocko-bottom">
-          <div className="l-skocko-controls">
+          {!this.state.is_game_end && <div className="l-skocko-controls">
             <PlaySkocko
               submitRound={this.submitRoundHandler}
               isGameEnd={this.state.is_game_end}
             />
-          </div>
+          </div>}
           <div className="l-end-game">
             {this.state.is_game_end && (
               <GameEnd

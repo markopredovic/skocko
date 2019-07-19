@@ -73,3 +73,89 @@ button {
     }
 }
 
+/* ----------------------------------------
+    mobile:
+----------------------------------------- */
+
+@media only screen and (max-width: 600px) {
+    .skocko-table {
+        padding: 10px 10px 5px;
+    
+        > div {
+            display: flex;
+        }
+
+        /* result table: */
+        &.result {
+           > div {
+            padding: 2px;
+            max-width: 49px;
+               flex-wrap: wrap;
+               margin-bottom: 5px;
+               background-color: #0070ff;
+
+               span.table-field {
+                   margin: 0 5px 5px 0;
+                width: 20px;
+                height: 20px;
+                border: none;
+                border-radius: unset;
+                background-color: unset;
+
+                &:nth-child(2n) { margin-right: 0; }
+                &:nth-child(3), &:last-child { margin-bottom: 0; }
+
+
+               }
+           } 
+        }
+    }
+    
+    .table-field {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 10px 5px 0;
+        width: 45px;
+        height: 45px;
+        border: 2px solid #67bdf7;
+    
+        &:nth-child(4n) { margin-right: 0; }
+
+        img {
+            height: 32px;
+            width: auto;
+        }
+    
+        &.success {
+           span {
+                display: inline-block;   
+                width: 20px;
+               height: 20px;
+           }
+        }
+        &.false {
+            span {
+                 display: inline-block;   
+                 width: 20px;
+                height: 20px;
+            }
+         }
+    }
+    
+    button {    
+        span.table-field {
+            margin: 0 5px 0 0;
+        }
+    
+        &:last-child span.table-field { margin-right: 0; }
+    }
+    
+    .btn {
+        padding: 0 20px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 16px;
+        color: #fff;
+    }
+}

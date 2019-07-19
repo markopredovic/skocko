@@ -4,14 +4,6 @@ body {
 .l-skocko {
     padding: 10px 30px;
 
-    background-color: #6bcbfb;
-
-    .l-title {
-        margin-bottom: 30px;
-
-        h1 { margin: 0; font-size: 3rem; }
-    }
-
     .l-skocko-top {
         margin-bottom: 40px;
         display: flex;
@@ -61,4 +53,60 @@ body {
         }
     }
     .l-table-result {}
+}
+
+/* -------------------------------
+    mobile:
+-------------------------------- */
+@media only screen and (max-width: 600px) {
+    .l-skocko {
+        padding: 10px;
+    
+        .l-skocko-top {
+            margin-bottom: 20px;
+        }
+    
+        .l-table-game { margin-right: 20px; }
+    
+        .l-skocko-bottom {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    
+        .l-skocko-controls {
+            margin: 0;
+    
+            .l-current-combination {
+                margin-bottom: 15px;
+            }
+            p { margin: 0 0 7px 0; }
+            .l-controls-buttons { margin-bottom: 15px; }
+            .l-actions {
+                .btn { margin-right: 20px; }
+            }
+        }
+    
+        .l-table {}
+        
+        .l-table-game {}
+
+        .l-end-game {
+            display: flex;
+            margin: 15px 0 0 0;
+    
+            p { margin: 0 0 10px 0; }
+
+
+        }
+        .l-random-combination {
+            margin-bottom: 15px;
+            
+            span {
+                &.table-field {
+                    margin: 0 5px 0 0;
+                }
+            }
+        }
+        .l-table-result {}
+    }
 }
