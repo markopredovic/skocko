@@ -148,13 +148,6 @@ class Skocko extends Component {
       };
     };
 
-    const updateResult = (result, step_result) => {
-      return {
-        right_place: result.right_place + step_result.right_place,
-        not_right_place: result.not_right_place + step_result.not_right_place
-      };
-    };
-
     let random_combination = [...this.state.randomCombination];
 
     let result = {

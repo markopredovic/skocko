@@ -44,6 +44,7 @@ button {
     padding: 0;
     border: unset;
     background-color: unset;
+    touch-action: manipulation;
 
     span.table-field {
         margin: 0 5px 0 0;

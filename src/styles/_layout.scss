@@ -36,8 +36,6 @@ body {
         }
     }
 
-    .l-table {}
-    .l-table-game {}
     .l-end-game {
         display: flex;
 
@@ -52,7 +50,6 @@ body {
             }
         }
     }
-    .l-table-result {}
 }
 
 /* -------------------------------
@@ -60,10 +57,10 @@ body {
 -------------------------------- */
 @media only screen and (max-width: 600px) {
     .l-skocko {
-        padding: 10px;
+        padding: 5px 10px;
     
         .l-skocko-top {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
     
         .l-table-game { margin-right: 20px; }
@@ -77,18 +74,14 @@ body {
             margin: 0;
     
             .l-current-combination {
-                margin-bottom: 15px;
+                margin-bottom: 10px;
             }
-            p { margin: 0 0 7px 0; }
-            .l-controls-buttons { margin-bottom: 15px; }
+            p { margin: 0 0 5px 0; }
+            .l-controls-buttons { margin-bottom: 10px; }
             .l-actions {
                 .btn { margin-right: 20px; }
             }
         }
-    
-        .l-table {}
-        
-        .l-table-game {}
 
         .l-end-game {
             display: flex;
@@ -107,6 +100,5 @@ body {
                 }
             }
         }
-        .l-table-result {}
     }
 }
