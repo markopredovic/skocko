@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/skocko/static/css/main.fe023664.chunk.css",
-    "main.js": "/skocko/static/js/main.ab7c3928.chunk.js",
-    "main.js.map": "/skocko/static/js/main.ab7c3928.chunk.js.map",
+    "main.css": "/skocko/static/css/main.1536833c.chunk.css",
+    "main.js": "/skocko/static/js/main.d44098c5.chunk.js",
+    "main.js.map": "/skocko/static/js/main.d44098c5.chunk.js.map",
     "runtime~main.js": "/skocko/static/js/runtime~main.e44c7566.js",
     "runtime~main.js.map": "/skocko/static/js/runtime~main.e44c7566.js.map",
     "static/js/2.a817af3b.chunk.js": "/skocko/static/js/2.a817af3b.chunk.js",
     "static/js/2.a817af3b.chunk.js.map": "/skocko/static/js/2.a817af3b.chunk.js.map",
     "index.html": "/skocko/index.html",
-    "precache-manifest.3dbd1056c9965383eccc91dae0d37a98.js": "/skocko/precache-manifest.3dbd1056c9965383eccc91dae0d37a98.js",
+    "precache-manifest.5e932e39d0284e728054e6d06e7c3ed6.js": "/skocko/precache-manifest.5e932e39d0284e728054e6d06e7c3ed6.js",
     "service-worker.js": "/skocko/service-worker.js",
-    "static/css/main.fe023664.chunk.css.map": "/skocko/static/css/main.fe023664.chunk.css.map"
+    "static/css/main.1536833c.chunk.css.map": "/skocko/static/css/main.1536833c.chunk.css.map"
   }
 }
