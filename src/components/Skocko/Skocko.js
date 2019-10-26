@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../../styles/styles.scss";
+import Select from 'react-select'
 import GameCurrent from "./GameCurrent";
 import PlaySkocko from "./PlaySkocko";
 import GameResult from "./GameResult";
@@ -19,7 +20,7 @@ import { isNull } from "util";
 
 class Skocko extends Component {
   state = {
-    lang: 'sr',
+    lang: {value: 'sr', label: 'Srpski'},
     game: [
       [null, null, null, null],
       [null, null, null, null],
@@ -231,18 +232,25 @@ class Skocko extends Component {
     this.generateRandomCombination();
   };
 
-  switchLangHandler = (event) => {
-    this.setState({lang: event.target.value})
+  switchLangHandler = (selected) => {
+    console.log('Selected: ', selected)
+    this.setState({ lang: selected });
   }
+
+  options = [
+    {value: 'sr', label: 'Srpski'},
+    {value: 'en', label: 'English'}
+  ]
 
   render() {
     return (
       <div className="l-skocko">
         <div className="l-lang">
-          <select onChange={this.switchLangHandler}>
-            <option value="sr">Sr</option>
-            <option value="en">En</option>
-          </select>
+          <Select 
+          value={this.state.lang}
+          options={this.options}
+          onChange={this.switchLangHandler} 
+          />
         </div>
         <div className="l-skocko-top">
           <div className="l-table-game l-table">
@@ -257,7 +265,7 @@ class Skocko extends Component {
           {!this.state.is_game_end && (
             <div className="l-skocko-controls">
               <PlaySkocko
-                lang={this.state.lang}
+                lang={this.state.lang.value}
                 submitRound={this.submitRoundHandler}
                 isGameEnd={this.state.is_game_end}
               />
@@ -266,7 +274,7 @@ class Skocko extends Component {
           <div className="l-end-game">
             {this.state.is_game_end && (
               <GameEnd
-                lang={this.state.lang}
+                lang={this.state.lang.value}
                 newGame={this.newGame}
                 is_success={this.state.is_success}
                 random={this.state.randomCombination}
