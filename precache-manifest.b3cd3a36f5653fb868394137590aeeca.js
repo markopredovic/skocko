@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "798001ef6e22fe70b691dfa02d3b816a",
+    "revision": "5078591847a233ed42b5b5e0e1d97a99",
     "url": "/skocko/index.html"
   },
   {
-    "revision": "005c3eb56e05856b724a",
+    "revision": "0f3385a2911a4d6a6b68",
     "url": "/skocko/static/css/main.1536833c.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/skocko/static/js/2.a817af3b.chunk.js"
   },
   {
-    "revision": "005c3eb56e05856b724a",
-    "url": "/skocko/static/js/main.d44098c5.chunk.js"
+    "revision": "0f3385a2911a4d6a6b68",
+    "url": "/skocko/static/js/main.a490dd9e.chunk.js"
   },
   {
     "revision": "bb8ca752a26c75e800a6",
