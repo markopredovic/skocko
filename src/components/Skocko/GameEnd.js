@@ -2,7 +2,8 @@ import React from "react";
 import GameIcon from "./GameIcon";
 
 const gameEnd = props => {
-  let report = "Cestitamo";
+  const lang = props.lang;
+  let report = lang === 'sr' ? 'Cestitamo' : 'Congratulations';
 
   if (!props.is_success) {
     report = props.random.map((sign, index) => (
@@ -12,9 +13,11 @@ const gameEnd = props => {
 
   return (
     <div>
-      <p>Kraj!!!</p>
+      <p>{lang === "sr" ? "Kraj!!!" : "Game End!!!"}</p>
       <div className="l-random-combination">{report}</div>
-      <button className="btn btn-info" onClick={() => props.newGame()}>Nova igra</button>
+      <button className="btn btn-info" onClick={() => props.newGame()}>
+        {lang === "sr" ? "Nova igra" : "New Game"}
+      </button>
     </div>
   );
 };

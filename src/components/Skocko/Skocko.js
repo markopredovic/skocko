@@ -6,8 +6,20 @@ import GameResult from "./GameResult";
 import GameEnd from "./GameEnd";
 import { isNull } from "util";
 
+/*
+  Data flow:
+
+  game table
+  result table
+  random combination: generate
+  current combination: submit
+  update game, result, success, end
+  
+*/
+
 class Skocko extends Component {
   state = {
+    lang: 'sr',
     game: [
       [null, null, null, null],
       [null, null, null, null],
@@ -31,7 +43,6 @@ class Skocko extends Component {
   };
 
   componentDidMount() {
-    console.log("Component did mount");
     this.generateRandomCombination();
   }
 
@@ -70,7 +81,12 @@ class Skocko extends Component {
       is_game_end = true;
     }
 
-    this.setState({ game: updatedGame, is_game_end: is_game_end });
+    this.setState(() => {
+      return { 
+        game: updatedGame, 
+        is_game_end: is_game_end 
+      };
+    });
   };
 
   updateResultTable = combination => {
@@ -215,9 +231,19 @@ class Skocko extends Component {
     this.generateRandomCombination();
   };
 
+  switchLangHandler = (event) => {
+    this.setState({lang: event.target.value})
+  }
+
   render() {
     return (
       <div className="l-skocko">
+        <div className="l-lang">
+          <select onChange={this.switchLangHandler}>
+            <option value="sr">Sr</option>
+            <option value="en">En</option>
+          </select>
+        </div>
         <div className="l-skocko-top">
           <div className="l-table-game l-table">
             <GameCurrent game={this.state.game} />
@@ -228,15 +254,19 @@ class Skocko extends Component {
           </div>
         </div>
         <div className="l-skocko-bottom">
-          {!this.state.is_game_end && <div className="l-skocko-controls">
-            <PlaySkocko
-              submitRound={this.submitRoundHandler}
-              isGameEnd={this.state.is_game_end}
-            />
-          </div>}
+          {!this.state.is_game_end && (
+            <div className="l-skocko-controls">
+              <PlaySkocko
+                lang={this.state.lang}
+                submitRound={this.submitRoundHandler}
+                isGameEnd={this.state.is_game_end}
+              />
+            </div>
+          )}
           <div className="l-end-game">
             {this.state.is_game_end && (
               <GameEnd
+                lang={this.state.lang}
                 newGame={this.newGame}
                 is_success={this.state.is_success}
                 random={this.state.randomCombination}

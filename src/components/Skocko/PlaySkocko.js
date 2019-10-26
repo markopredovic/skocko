@@ -45,29 +45,78 @@ class PlaySkocko extends Component {
     }
 
     render() {
+
+        const lang = this.props.lang;
+
+        console.log('Lang:', lang)
+
         return (
-            <div className="l-skocko-controls-wrapper">
-                <div className="l-current-combination">
-                    <GameIcon icon={parseSign(this.state.currentCombination[0])} />
-                    <GameIcon icon={parseSign(this.state.currentCombination[1])} />
-                    <GameIcon icon={parseSign(this.state.currentCombination[2])} />
-                    <GameIcon icon={parseSign(this.state.currentCombination[3])} />
-                </div>
-                <p>Izaberi kombinaciju:</p>
-                <div className="l-controls-buttons">
-                        <button onClick={() => this.addSignHandler(1)} disabled={this.state.disabled || this.props.isGameEnd}><GameIcon icon={1} /></button>
-                        <button onClick={() => this.addSignHandler(2)} disabled={this.state.disabled || this.props.isGameEnd}><GameIcon icon={2} /></button>
-                        <button onClick={() => this.addSignHandler(3)} disabled={this.state.disabled || this.props.isGameEnd}><GameIcon icon={3} /></button>
-                        <button onClick={() => this.addSignHandler(4)} disabled={this.state.disabled || this.props.isGameEnd}><GameIcon icon={4} /></button>
-                        <button onClick={() => this.addSignHandler(5)} disabled={this.state.disabled || this.props.isGameEnd}><GameIcon icon={5} /></button>
-                        <button onClick={() => this.addSignHandler(6)} disabled={this.state.disabled || this.props.isGameEnd}><GameIcon icon={6} /></button>
-                    </div>
-                <div className="l-actions">
-                    <button className="btn btn-success" onClick={this.submitCombination} disabled={!this.state.disabled  || this.props.isGameEnd}>Potvrdi</button>
-                    <button className="btn btn-danger" onClick={this.clearCombination} disabled={ this.props.isGameEnd}>Obrisi</button>
-                </div>
+          <div className="l-skocko-controls-wrapper">
+            <div className="l-current-combination">
+              <GameIcon icon={parseSign(this.state.currentCombination[0])} />
+              <GameIcon icon={parseSign(this.state.currentCombination[1])} />
+              <GameIcon icon={parseSign(this.state.currentCombination[2])} />
+              <GameIcon icon={parseSign(this.state.currentCombination[3])} />
             </div>
-        )
+            <p>
+              {lang === "sr" ? "Izaberi kombinaciju:" : "Choose combination:"}
+            </p>
+            <div className="l-controls-buttons">
+              <button
+                onClick={() => this.addSignHandler(1)}
+                disabled={this.state.disabled || this.props.isGameEnd}
+              >
+                <GameIcon icon={1} />
+              </button>
+              <button
+                onClick={() => this.addSignHandler(2)}
+                disabled={this.state.disabled || this.props.isGameEnd}
+              >
+                <GameIcon icon={2} />
+              </button>
+              <button
+                onClick={() => this.addSignHandler(3)}
+                disabled={this.state.disabled || this.props.isGameEnd}
+              >
+                <GameIcon icon={3} />
+              </button>
+              <button
+                onClick={() => this.addSignHandler(4)}
+                disabled={this.state.disabled || this.props.isGameEnd}
+              >
+                <GameIcon icon={4} />
+              </button>
+              <button
+                onClick={() => this.addSignHandler(5)}
+                disabled={this.state.disabled || this.props.isGameEnd}
+              >
+                <GameIcon icon={5} />
+              </button>
+              <button
+                onClick={() => this.addSignHandler(6)}
+                disabled={this.state.disabled || this.props.isGameEnd}
+              >
+                <GameIcon icon={6} />
+              </button>
+            </div>
+            <div className="l-actions">
+              <button
+                className="btn btn-success"
+                onClick={this.submitCombination}
+                disabled={!this.state.disabled || this.props.isGameEnd}
+              >
+                {lang === "sr" ? "Potvrdi" : "Confirm"}
+              </button>
+              <button
+                className="btn btn-danger"
+                onClick={this.clearCombination}
+                disabled={this.props.isGameEnd}
+              >
+                {lang === "sr" ? "Obrisi" : "Delete"}
+              </button>
+            </div>
+          </div>
+        );
     }
 
 }
