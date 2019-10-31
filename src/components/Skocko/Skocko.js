@@ -5,6 +5,9 @@ import GameCurrent from "./GameCurrent";
 import PlaySkocko from "./PlaySkocko";
 import GameResult from "./GameResult";
 import GameEnd from "./GameEnd";
+import ModalGuide from "./ModalGuide/ModalGuide"
+import ModalContent from "./ModalContent"
+import BackDrop from "./BackDrop/BackDrop"
 import { isNull } from "util";
 
 /*
@@ -15,7 +18,7 @@ import { isNull } from "util";
   random combination: generate
   current combination: submit
   update game, result, success, end
-  
+
 */
 
 class Skocko extends Component {
@@ -40,7 +43,8 @@ class Skocko extends Component {
     randomCombination: [null, null, null, null],
     currentCombination: [null, null, null, null],
     is_game_end: false,
-    is_success: false
+    is_success: false,
+    showModalGuide: false
   };
 
   componentDidMount() {
@@ -83,9 +87,9 @@ class Skocko extends Component {
     }
 
     this.setState(() => {
-      return { 
-        game: updatedGame, 
-        is_game_end: is_game_end 
+      return {
+        game: updatedGame,
+        is_game_end: is_game_end
       };
     });
   };
@@ -242,16 +246,40 @@ class Skocko extends Component {
     {value: 'en', label: 'English'}
   ]
 
+  closeModal = () => {
+    this.setState({showModalGuide: false})
+  }
+
   render() {
     return (
       <div className="l-skocko">
-        <div className="l-lang">
-          <Select 
-          value={this.state.lang}
-          options={this.options}
-          onChange={this.switchLangHandler} 
-          />
+        <BackDrop
+          showModalGuide={this.state.showModalGuide}
+          closeModal={this.closeModal}
+        />
+        <div className="l-header">
+          <div className="l-lang">
+            <Select
+              value={this.state.lang}
+              options={this.options}
+              onChange={this.switchLangHandler}
+            />
+          </div>
+          <div className="l-guide">
+            <button onClick={() => this.setState({ showModalGuide: true })}>
+              {this.state.lang.value === 'sr'
+                ? "Uputstvo"
+                : "Show guide"}
+            </button>
+          </div>
         </div>
+
+        <ModalGuide
+          showModalGuide={this.state.showModalGuide}
+          closeModal={this.closeModal}
+        >
+          <ModalContent lang={this.state.lang.value}/>
+        </ModalGuide>
         <div className="l-skocko-top">
           <div className="l-table-game l-table">
             <GameCurrent game={this.state.game} />

@@ -4,9 +4,67 @@ body {
 .l-skocko {
     padding: 10px 30px;
 
+    .l-header {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+
+        .l-guide {
+            button {
+                cursor: pointer;
+                font-size: 1.3rem;
+                text-decoration: underline;
+                line-height: 38px;
+            }
+        }
+    }
+
     .l-skocko-top {
         margin-bottom: 40px;
         display: flex;
+    }
+
+    .l-modal {
+        position: fixed;
+        top: 50px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        width: 80%;
+        z-index: 999;
+        padding: 20px;
+        border: 1px solid #ddd;
+        background-color: #fff;
+
+        .l-close {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            font-size: 2.4rem;
+            border-radius: 30px;
+            color: #fff;
+            background-color: #000;
+            cursor: pointer;
+        }
+
+        .l-modal-content {
+        max-height: 80vh;
+        overflow-y: auto;
+        }
+    }
+
+    #backdrop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 998;
+        background-color: rgba(0, 0, 0, .2);
     }
 
     .l-table-game { margin-right: 50px; }
@@ -43,7 +101,7 @@ body {
     }
     .l-random-combination {
         margin-bottom: 20px;
-        
+
         span {
             &.table-field {
                 margin: 0 5px 0 0;
@@ -54,8 +112,8 @@ body {
 
 // language switcher
 .l-lang {
-    margin-bottom: 10px;
-    max-width: 120px;
+    margin-right: 50px;
+    min-width: 120px;
 }
 
 /* -------------------------------
@@ -64,21 +122,21 @@ body {
 @media only screen and (max-width: 600px) {
     .l-skocko {
         padding: 5px 10px;
-    
+
         .l-skocko-top {
             margin-bottom: 15px;
         }
-    
+
         .l-table-game { margin-right: 20px; }
-    
+
         .l-skocko-bottom {
             display: flex;
             flex-wrap: wrap;
         }
-    
+
         .l-skocko-controls {
             margin: 0;
-    
+
             .l-current-combination {
                 margin-bottom: 10px;
             }
@@ -92,14 +150,14 @@ body {
         .l-end-game {
             display: flex;
             margin: 15px 0 0 0;
-    
+
             p { margin: 0 0 10px 0; }
 
 
         }
         .l-random-combination {
             margin-bottom: 15px;
-            
+
             span {
                 &.table-field {
                     margin: 0 5px 0 0;
