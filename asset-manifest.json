@@ -1,15 +1,21 @@
 {
   "files": {
-    "main.css": "/skocko/static/css/main.f81465a8.chunk.css",
-    "main.js": "/skocko/static/js/main.842605a7.chunk.js",
-    "main.js.map": "/skocko/static/js/main.842605a7.chunk.js.map",
-    "runtime~main.js": "/skocko/static/js/runtime~main.e44c7566.js",
-    "runtime~main.js.map": "/skocko/static/js/runtime~main.e44c7566.js.map",
-    "static/js/2.a7a00760.chunk.js": "/skocko/static/js/2.a7a00760.chunk.js",
-    "static/js/2.a7a00760.chunk.js.map": "/skocko/static/js/2.a7a00760.chunk.js.map",
+    "main.css": "/skocko/static/css/main.8c8a43a4.chunk.css",
+    "main.js": "/skocko/static/js/main.9446e707.chunk.js",
+    "main.js.map": "/skocko/static/js/main.9446e707.chunk.js.map",
+    "runtime-main.js": "/skocko/static/js/runtime-main.d8fde1cb.js",
+    "runtime-main.js.map": "/skocko/static/js/runtime-main.d8fde1cb.js.map",
+    "static/js/2.e81e22c2.chunk.js": "/skocko/static/js/2.e81e22c2.chunk.js",
+    "static/js/2.e81e22c2.chunk.js.map": "/skocko/static/js/2.e81e22c2.chunk.js.map",
     "index.html": "/skocko/index.html",
-    "precache-manifest.d5d1e80d5d4c85abc42a8ff6392ff3ab.js": "/skocko/precache-manifest.d5d1e80d5d4c85abc42a8ff6392ff3ab.js",
+    "precache-manifest.6170325d66d321404fdb80d8ab21eadf.js": "/skocko/precache-manifest.6170325d66d321404fdb80d8ab21eadf.js",
     "service-worker.js": "/skocko/service-worker.js",
-    "static/css/main.f81465a8.chunk.css.map": "/skocko/static/css/main.f81465a8.chunk.css.map"
-  }
+    "static/css/main.8c8a43a4.chunk.css.map": "/skocko/static/css/main.8c8a43a4.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d8fde1cb.js",
+    "static/js/2.e81e22c2.chunk.js",
+    "static/css/main.8c8a43a4.chunk.css",
+    "static/js/main.9446e707.chunk.js"
+  ]
 }
