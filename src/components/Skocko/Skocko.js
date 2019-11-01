@@ -296,6 +296,7 @@ class Skocko extends Component {
                 lang={this.state.lang.value}
                 submitRound={this.submitRoundHandler}
                 isGameEnd={this.state.is_game_end}
+                resetGame={this.newGame}
               />
             </div>
           )}

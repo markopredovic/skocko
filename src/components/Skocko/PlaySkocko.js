@@ -48,8 +48,6 @@ class PlaySkocko extends Component {
 
         const lang = this.props.lang;
 
-        console.log('Lang:', lang)
-
         return (
           <div className="l-skocko-controls-wrapper">
             <div className="l-current-combination">
@@ -113,6 +111,12 @@ class PlaySkocko extends Component {
                 disabled={this.props.isGameEnd}
               >
                 {lang === "sr" ? "Obrisi" : "Delete"}
+              </button>
+              <button
+                className="btn btn-info"
+                onClick={this.props.resetGame}
+              >
+                {lang === "sr" ? "Nova igra" : "New game"}
               </button>
             </div>
           </div>
