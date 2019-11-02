@@ -46,6 +46,7 @@ class Skocko extends Component {
     is_game_end: false,
     is_success: false,
     showModalGuide: false,
+    is_game_started: false,
     time: 0
   };
 
@@ -233,7 +234,8 @@ class Skocko extends Component {
       randomCombination: [null, null, null, null],
       is_game_end: false,
       is_success: false,
-      time: 0
+      time: 0,
+      is_game_started: true
     });
 
     this.generateRandomCombination();
@@ -258,7 +260,8 @@ class Skocko extends Component {
     this.setState(() => {
       return {
         is_game_end: true,
-        is_success: is_game_success
+        is_success: is_game_success,
+        is_game_started: false
       };
     });
   };
@@ -305,7 +308,7 @@ class Skocko extends Component {
           </div>
 
           <div className="l-skocko-time">
-            <SkockoTime endGame={this.endGame} time={this.state.time} updateTime={this.updateTime} is_game_ended={this.state.is_game_end} is_success={this.state.is_success}/>
+            <SkockoTime endGame={this.endGame} time={this.state.time} updateTime={this.updateTime} is_game_ended={this.state.is_game_end} is_success={this.state.is_success} is_game_started={this.state.is_game_started} />
           </div>
 
           <div className="l-table-result l-table">
@@ -319,7 +322,7 @@ class Skocko extends Component {
                 lang={this.state.lang.value}
                 submitRound={this.submitRoundHandler}
                 isGameEnd={this.state.is_game_end}
-                resetGame={this.newGame}
+                newGame={this.newGame}
               />
             </div>
           )}

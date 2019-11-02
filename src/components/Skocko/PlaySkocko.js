@@ -114,9 +114,9 @@ class PlaySkocko extends Component {
               </button>
               <button
                 className="btn btn-info"
-                onClick={this.props.resetGame}
+                onClick={this.props.newGame}
               >
-                {lang === "sr" ? "Nova igra" : "New game"}
+                {lang === "sr" ? "Pocni igru" : "Start game"}
               </button>
             </div>
           </div>
