@@ -46,7 +46,7 @@ class Skocko extends Component {
     is_game_end: false,
     is_success: false,
     showModalGuide: false,
-    time: 55
+    time: 0
   };
 
   componentDidMount() {
@@ -253,15 +253,22 @@ class Skocko extends Component {
     this.setState({ showModalGuide: false });
   };
 
-  endGame = () => {
-    this.setState({
-      is_game_end: true,
-      is_success: false
+  endGame = (is_game_success) => {
+    console.log("Is game success:", is_game_success);
+    this.setState(() => {
+      return {
+        is_game_end: true,
+        is_success: is_game_success
+      };
     });
   };
 
   updateTime = (time) => {
-    this.setState({time})
+    this.setState(() => {
+      return {
+        time
+      }
+    })
   }
 
   render() {
@@ -298,7 +305,7 @@ class Skocko extends Component {
           </div>
 
           <div className="l-skocko-time">
-            <SkockoTime stopGame={this.endGame} time={this.state.time} updateTime={this.updateTime} is_game_ended={this.state.is_game_end}/>
+            <SkockoTime endGame={this.endGame} time={this.state.time} updateTime={this.updateTime} is_game_ended={this.state.is_game_end} is_success={this.state.is_success}/>
           </div>
 
           <div className="l-table-result l-table">
