@@ -323,6 +323,7 @@ class Skocko extends Component {
                 submitRound={this.submitRoundHandler}
                 isGameEnd={this.state.is_game_end}
                 newGame={this.newGame}
+                isGameStarted={this.state.is_game_started}
               />
             </div>
           )}

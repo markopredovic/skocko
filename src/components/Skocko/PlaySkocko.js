@@ -62,37 +62,61 @@ class PlaySkocko extends Component {
             <div className="l-controls-buttons">
               <button
                 onClick={() => this.addSignHandler(1)}
-                disabled={this.state.disabled || this.props.isGameEnd}
+                disabled={
+                  this.state.disabled ||
+                  this.props.isGameEnd ||
+                  !this.props.isGameStarted
+                }
               >
                 <GameIcon icon={1} />
               </button>
               <button
                 onClick={() => this.addSignHandler(2)}
-                disabled={this.state.disabled || this.props.isGameEnd}
+                disabled={
+                  this.state.disabled ||
+                  this.props.isGameEnd ||
+                  !this.props.isGameStarted
+                }
               >
                 <GameIcon icon={2} />
               </button>
               <button
                 onClick={() => this.addSignHandler(3)}
-                disabled={this.state.disabled || this.props.isGameEnd}
+                disabled={
+                  this.state.disabled ||
+                  this.props.isGameEnd ||
+                  !this.props.isGameStarted
+                }
               >
                 <GameIcon icon={3} />
               </button>
               <button
                 onClick={() => this.addSignHandler(4)}
-                disabled={this.state.disabled || this.props.isGameEnd}
+                disabled={
+                  this.state.disabled ||
+                  this.props.isGameEnd ||
+                  !this.props.isGameStarted
+                }
               >
                 <GameIcon icon={4} />
               </button>
               <button
                 onClick={() => this.addSignHandler(5)}
-                disabled={this.state.disabled || this.props.isGameEnd}
+                disabled={
+                  this.state.disabled ||
+                  this.props.isGameEnd ||
+                  !this.props.isGameStarted
+                }
               >
                 <GameIcon icon={5} />
               </button>
               <button
                 onClick={() => this.addSignHandler(6)}
-                disabled={this.state.disabled || this.props.isGameEnd}
+                disabled={
+                  this.state.disabled ||
+                  this.props.isGameEnd ||
+                  !this.props.isGameStarted
+                }
               >
                 <GameIcon icon={6} />
               </button>
@@ -101,21 +125,22 @@ class PlaySkocko extends Component {
               <button
                 className="btn btn-success"
                 onClick={this.submitCombination}
-                disabled={!this.state.disabled || this.props.isGameEnd}
+                disabled={
+                  !this.state.disabled ||
+                  this.props.isGameEnd ||
+                  !this.props.isGameStarted
+                }
               >
                 {lang === "sr" ? "Potvrdi" : "Confirm"}
               </button>
               <button
                 className="btn btn-danger"
                 onClick={this.clearCombination}
-                disabled={this.props.isGameEnd}
+                disabled={this.props.isGameEnd || !this.props.isGameStarted}
               >
                 {lang === "sr" ? "Obrisi" : "Delete"}
               </button>
-              <button
-                className="btn btn-info"
-                onClick={this.props.newGame}
-              >
+              <button className="btn btn-info" onClick={this.props.newGame}>
                 {lang === "sr" ? "Pocni igru" : "Start game"}
               </button>
             </div>
