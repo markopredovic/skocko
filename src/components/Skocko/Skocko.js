@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import "../../styles/styles.scss";
-import Select from 'react-select'
+import Select from "react-select";
 import GameCurrent from "./GameCurrent";
 import PlaySkocko from "./PlaySkocko";
 import GameResult from "./GameResult";
 import GameEnd from "./GameEnd";
-import ModalGuide from "./ModalGuide/ModalGuide"
-import ModalContent from "./ModalContent"
-import BackDrop from "./BackDrop/BackDrop"
+import SkockoTime from "./SkockoTime";
+import ModalGuide from "./ModalGuide/ModalGuide";
+import ModalContent from "./ModalContent";
+import BackDrop from "./BackDrop/BackDrop";
 import { isNull } from "util";
 
 /*
@@ -23,7 +24,7 @@ import { isNull } from "util";
 
 class Skocko extends Component {
   state = {
-    lang: {value: 'sr', label: 'Srpski'},
+    lang: { value: "sr", label: "Srpski" },
     game: [
       [null, null, null, null],
       [null, null, null, null],
@@ -44,7 +45,8 @@ class Skocko extends Component {
     currentCombination: [null, null, null, null],
     is_game_end: false,
     is_success: false,
-    showModalGuide: false
+    showModalGuide: false,
+    time: 55
   };
 
   componentDidMount() {
@@ -230,24 +232,36 @@ class Skocko extends Component {
       ],
       randomCombination: [null, null, null, null],
       is_game_end: false,
-      is_success: false
+      is_success: false,
+      time: 0
     });
 
     this.generateRandomCombination();
   };
 
-  switchLangHandler = (selected) => {
-    console.log('Selected: ', selected)
+  switchLangHandler = selected => {
+    console.log("Selected: ", selected);
     this.setState({ lang: selected });
-  }
+  };
 
   options = [
-    {value: 'sr', label: 'Srpski'},
-    {value: 'en', label: 'English'}
-  ]
+    { value: "sr", label: "Srpski" },
+    { value: "en", label: "English" }
+  ];
 
   closeModal = () => {
-    this.setState({showModalGuide: false})
+    this.setState({ showModalGuide: false });
+  };
+
+  endGame = () => {
+    this.setState({
+      is_game_end: true,
+      is_success: false
+    });
+  };
+
+  updateTime = (time) => {
+    this.setState({time})
   }
 
   render() {
@@ -267,9 +281,7 @@ class Skocko extends Component {
           </div>
           <div className="l-guide">
             <button onClick={() => this.setState({ showModalGuide: true })}>
-              {this.state.lang.value === 'sr'
-                ? "Uputstvo"
-                : "Show guide"}
+              {this.state.lang.value === "sr" ? "Uputstvo" : "Show guide"}
             </button>
           </div>
         </div>
@@ -278,11 +290,15 @@ class Skocko extends Component {
           showModalGuide={this.state.showModalGuide}
           closeModal={this.closeModal}
         >
-          <ModalContent lang={this.state.lang.value}/>
+          <ModalContent lang={this.state.lang.value} />
         </ModalGuide>
         <div className="l-skocko-top">
           <div className="l-table-game l-table">
             <GameCurrent game={this.state.game} />
+          </div>
+
+          <div className="l-skocko-time">
+            <SkockoTime stopGame={this.endGame} time={this.state.time} updateTime={this.updateTime} is_game_ended={this.state.is_game_end}/>
           </div>
 
           <div className="l-table-result l-table">
