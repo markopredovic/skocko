@@ -133,11 +133,13 @@ body {
         padding: 5px 10px;
 
         .l-skocko-top {
+            justify-content: space-between;
             margin-bottom: 15px;
             max-height: 339px;
         }
 
-        .l-table-game { margin-right: 20px; }
+        .l-table-game { margin-right: 0; }
+        .l-skocko-time { margin-right: 0;}
 
         .l-skocko-bottom {
             display: flex;
