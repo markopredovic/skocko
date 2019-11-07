@@ -47,6 +47,7 @@ class Skocko extends Component {
     is_success: false,
     showModalGuide: false,
     is_game_started: false,
+    is_game_paused: false,
     time: 0
   };
 
@@ -274,6 +275,22 @@ class Skocko extends Component {
     })
   }
 
+  pauseGame = () => {
+    this.setState(() => {
+      return {
+        is_game_paused: true
+      }
+    })
+  }
+
+  continueGame = () => {
+    this.setState(() => {
+      return {
+        is_game_paused: false
+      };
+    });
+  }
+
   render() {
     return (
       <div className="l-skocko">
@@ -308,7 +325,8 @@ class Skocko extends Component {
           </div>
 
           <div className="l-skocko-time">
-            <SkockoTime endGame={this.endGame} time={this.state.time} updateTime={this.updateTime} is_game_ended={this.state.is_game_end} is_success={this.state.is_success} is_game_started={this.state.is_game_started} />
+            <SkockoTime endGame={this.endGame} time={this.state.time} updateTime={this.updateTime} is_game_ended={this.state.is_game_end} is_success={this.state.is_success} is_game_started={this.state.is_game_started}
+            is_game_paused={this.state.is_game_paused}/>
           </div>
 
           <div className="l-table-result l-table">
@@ -323,7 +341,10 @@ class Skocko extends Component {
                 submitRound={this.submitRoundHandler}
                 isGameEnd={this.state.is_game_end}
                 newGame={this.newGame}
+                pauseGame={this.pauseGame}
+                continueGame={this.continueGame}
                 isGameStarted={this.state.is_game_started}
+                isGamePaused={this.state.is_game_paused}
               />
             </div>
           )}
